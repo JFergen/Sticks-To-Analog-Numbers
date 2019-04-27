@@ -33,6 +33,8 @@ string getSmallest(int n)
 {
     int userNum = n; // This is just so I can change the number in function without changing user's choice
     string smallNum; // This is the string that is returned after pushing back numbers
+    int numNumbers = (n / 7) + 1; // This should be the amount of numbers in final number
+    int numRemainder = n % 7;
     
     switch(userNum)
     {
@@ -52,17 +54,97 @@ string getSmallest(int n)
     
     while(userNum != 0)
     {
-        if(userNum >= 7)
+        switch(numRemainder)
         {
-            userNum -= 7;
-            smallNum += "8";
-        }
-        if(userNum >= 6)
-        {
-            userNum -= 6;
-            //smallNum.at(s)
+            case 0:
+                numNumbers--;
+                for(int i = 0; i < numNumbers; i++)
+                {
+                    userNum -= 7;
+                    smallNum += "8";
+                }
+                break;
+            case 1:
+                userNum -= 2;
+                smallNum += "1";
+                
+                userNum -= 6;
+                smallNum += "0";
+                
+                for(int i = 0; i < numNumbers - 2; i++)
+                {
+                    userNum -= 7;
+                    smallNum += "8";
+                }
+                break;
+            case 2:
+                userNum -= 2;
+                smallNum += "1";
+        
+                for(int i = 0; i < numNumbers - 1; i++)
+                {
+                    userNum -= 7;
+                    smallNum += "8";
+                }
+                break;
+            case 3:
+                if(userNum == 10)
+                {
+                    return "22";
+                }
+                
+                userNum -= 5;
+                smallNum += "2";
+                
+                userNum -= 6;
+                smallNum += "0";
+                
+                userNum -= 6;
+                smallNum += "0";
+                
+                for(int i = 0; i < numNumbers - 3; i++)
+                {
+                    userNum -= 7;
+                    smallNum += "8";
+                }
+                break;
+            case 4:
+                userNum -= 5;
+                smallNum += "2";
+        
+                userNum -= 6;
+                smallNum += "0";
+        
+                for(int i = 0; i < numNumbers - 2; i++)
+                {
+                    userNum -= 7;
+                    smallNum += "8";
+                }
+                break;
+            case 5:
+                userNum -= 5;
+                smallNum += "2";
+        
+                for(int i = 0; i < numNumbers - 1; i++)
+                {
+                    userNum -= 7;
+                    smallNum += "8";
+                }
+                break;
+            case 6:
+                userNum -= 6;
+                smallNum += "6";
+        
+                for(int i = 0; i < numNumbers - 1; i++)
+                {
+                    userNum -= 7;
+                    smallNum += "8";
+                }
+                break;
         }
     }
+    
+    return smallNum;
 }
 
 string getLargest(int n)
